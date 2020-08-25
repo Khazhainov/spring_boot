@@ -22,11 +22,13 @@ public class UserController {
 
     @GetMapping("/admin")
     public String allUsers(ModelMap model) {
+        User authUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("authUser", authUser);
         model.addAttribute("users", userService.listUsers());
         return "admin";
     }
 
-    @GetMapping(value = "login")
+    @GetMapping(value = "/login")
     public String loginPage() {
         return "login";
     }
@@ -37,7 +39,21 @@ public class UserController {
         return "new";
     }
 
-    @GetMapping("/admin/edit/{id}")
+    @PostMapping("/admin/edit")
+    public String edit(User user, String role) {
+        Set<Role> roles = new HashSet<>();
+        if (role.contains(", ")) {
+            roles.add(userService.getByRoleName("ROLE_USER"));
+            roles.add(userService.getByRoleName("ROLE_ADMIN"));
+        } else {
+            roles.add(userService.getByRoleName(role));
+        }
+        user.setRoles(roles);
+        userService.add(user);
+        return "redirect:/admin";
+    }
+
+    /*@GetMapping("/admin/edit/{id}")
     public String editUserForm(@PathVariable("id") long id, ModelMap model) {
         model.addAttribute("user", userService.getById(id));
         return "update";
@@ -60,7 +76,7 @@ public class UserController {
         userService.add(user);
         modelMap.addAttribute("user", userService.listUsers());
         return "redirect:/admin";
-    }
+    }*/
 
     @RequestMapping("/admin/delete/{id}")
     public String deleteUserForm(@PathVariable("id") long id) {

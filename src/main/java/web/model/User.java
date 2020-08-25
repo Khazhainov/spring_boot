@@ -4,7 +4,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.Set;
 
 @Entity
@@ -111,5 +113,23 @@ public class User implements UserDetails {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    @Transient
+    public String[] getArrayOfRoles() {
+        String[] arrRoles = new String[roles.size()];
+        Iterator<Role> iter = roles.iterator();
+        int i = 0;
+        while (iter.hasNext()) {
+            arrRoles[i++] = iter.next().getRole();
+        }
+        return arrRoles;
+    }
+
+    @Transient
+    public String getStringRoles() {
+        return Arrays.toString(getArrayOfRoles())
+                .replace("[", "")
+                .replace("]", "");
     }
 }
