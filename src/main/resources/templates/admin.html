@@ -165,10 +165,12 @@
                                 </div>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-danger" data-toggle="modal"
-                                        th:attr="data-target='#deleteModal'+${user.id}">
-                                    Delete
-                                </button>
+                                <span th:if="${user.email != authUser.email}">
+                                    <button type="button" class="btn btn-danger" data-toggle="modal"
+                                            th:attr="data-target='#deleteModal'+${user.id}">
+                                        Delete
+                                    </button>
+                                </span>
                                 <div class="modal fade" th:attr="id='deleteModal'+${user.id}" tabindex="-1"
                                      role="dialog"
                                      aria-labelledby="deleteModalLabel"
