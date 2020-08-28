@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -21,12 +21,12 @@
             <nav class="d-none d-sm-block sidebar">
                 <nav class="sidebar">
                     <ul class="nav nav-pills nav-fill flex-column">
-                        <sec:authorize access="hasRole('ADMIN')">
+                        <div sec:authorize="hasRole('ROLE_ADMIN')">
                             <li class="nav-item">
                                 <a class="nav-link"
                                    href="/admin">Admin</a>
                             </li>
-                        </sec:authorize>
+                        </div>
                         <li class="nav-item active">
                             <a class="nav-link active" href="/user">User</a>
                         </li>

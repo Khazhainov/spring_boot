@@ -66,6 +66,7 @@ public class AppController {
         return roles;
     }
 
+
     @RequestMapping("/admin/delete")
     public String deleteUserForm(@RequestParam("id") long id) {
         userService.deleteById(id);
