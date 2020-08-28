@@ -23,7 +23,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User add(User user) {
         if (user.getId() == null) {
-            user.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
+            //user.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
             em.persist(user);
             return user;
         } else {
