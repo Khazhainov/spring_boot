@@ -1,5 +1,6 @@
 package web.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -37,6 +38,20 @@ public class User implements UserDetails {
     public User() {
     }
 
+    public User(String firstName, String lastName, String email, String password, Set<Role> roles) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.roles = roles;
+    }
+
+    @Transient
+    @Override
+    public String toString() {
+        return id + ", " + firstName + ", " + lastName + ", " + email + ", " + password + ", " + this.getStringRoles();
+    }
+
     public Long getId() {
         return id;
     }
@@ -69,6 +84,7 @@ public class User implements UserDetails {
         this.email = email;
     }
 
+    @JsonIgnore
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles;
@@ -78,26 +94,31 @@ public class User implements UserDetails {
         return password;
     }
 
+    @JsonIgnore
     @Override
     public String getUsername() {
         return email;
     }
 
+    @JsonIgnore
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
 
+    @JsonIgnore
     @Override
     public boolean isAccountNonLocked() {
         return true;
     }
 
+    @JsonIgnore
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
+    @JsonIgnore
     @Override
     public boolean isEnabled() {
         return true;
@@ -115,6 +136,7 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
+    @JsonIgnore
     @Transient
     public String[] getArrayOfRoles() {
         String[] arrRoles = new String[roles.size()];
@@ -126,6 +148,7 @@ public class User implements UserDetails {
         return arrRoles;
     }
 
+    @JsonIgnore
     @Transient
     public String getStringRoles() {
         return Arrays.toString(getArrayOfRoles())

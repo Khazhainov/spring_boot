@@ -264,30 +264,22 @@
                     <div class="row justify-content-center align-items-center">
                         <div class="col-md-5">
                             <div class="container text-center">
-                                <form action="#" th:action="@{/admin/add}" th:object="${newUser}" method="post"
-                                      align="center">
+                                <form id="addForm" align="center">
                                     <div class="form-group">
-                                        <label for="exampleInputName" class=" font-weight-bold">First Name</label>
-                                        <input type="text" th:field="*{firstName}" class="form-control"
-                                               id="exampleInputName"
-                                               placeholder="Enter your name">
+                                        <label for="addName" class=" font-weight-bold">First Name</label>
+                                        <input type="text" class="form-control" id="addName"placeholder="Enter your name">
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputLastName" class=" font-weight-bold">Last Name</label>
-                                        <input type="text" th:field="*{lastName}" class="form-control"
-                                               id="exampleInputLastName"
-                                               placeholder="Enter your last name">
+                                        <label for="addLastName" class=" font-weight-bold">Last Name</label>
+                                        <input type="text" class="form-control" id="addLastName" placeholder="Enter your last name">
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputEmail" class=" font-weight-bold">Email</label>
-                                        <input type="email" th:field="*{email}" class="form-control"
-                                               id="exampleInputEmail"
-                                               placeholder="Enter your Email">
+                                        <label for="addEmail" class=" font-weight-bold">Email</label>
+                                        <input type="email" class="form-control" id="addEmail" placeholder="Enter your Email">
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputPassword" class=" font-weight-bold">Password</label>
-                                        <input type="password" th:field="*{password}" class="form-control"
-                                               id="exampleInputPassword"
+                                        <label for="addPassword" class=" font-weight-bold">Password</label>
+                                        <input type="password" class="form-control" id="addPassword"
                                                placeholder="Enter your Password">
                                     </div>
                                     <div class="form-group">
