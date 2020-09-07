@@ -27,12 +27,12 @@ public class RESTController {
     }
 
     @PutMapping(value = "/edit")
-    public ResponseEntity<String> edit(@RequestBody User user) {
+    public ResponseEntity<User> edit(@RequestBody User user) {
         if ("".equals(user.getStringRoles())) {
             user.setRoles(userService.getById(user.getId()).getRoles());
         }
         userService.add(user);
-        return new ResponseEntity<>("true", new HttpHeaders(), HttpStatus.OK);
+        return new ResponseEntity<>(user, new HttpHeaders(), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
