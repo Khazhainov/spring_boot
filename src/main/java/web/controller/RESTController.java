@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import web.model.User;
 import web.service.UserService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/rest")
 public class RESTController {
@@ -15,9 +17,15 @@ public class RESTController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/all")
+    /*@GetMapping("/all")
     public ResponseEntity<Iterable<User>> getUsers() {
         return new ResponseEntity<>(userService.listUsers(), new HttpHeaders(), HttpStatus.OK);
+    }*/
+
+    @GetMapping(value = "/all")
+    public List<User> getAllUsers() {
+        List<User> users = userService.listUsers();
+        return users ;
     }
 
     @PostMapping("/add")
